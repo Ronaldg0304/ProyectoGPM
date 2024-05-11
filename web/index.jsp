@@ -3,9 +3,6 @@
     Created on : 10 may 2024, 15:55:24
     Author     : rolan
 --%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <%@ page import="java.util.List" %>
 <%@ page import="dao.TipoSolicitudDAOImpl" %>
 <%@ page import="dao.EquipoDAOImpl" %>
@@ -13,6 +10,8 @@
 <%@ page import="model.TipoSolicitud" %>
 <%@ page import="model.Equipo" %>
 <%@ page import="model.Operatividad" %>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
@@ -30,7 +29,7 @@
                     List<Equipo> listEquipo = equipoDAOImpl.obtenerTodosLosEquipos();
                     for (Equipo equipo : listEquipo ) {
                 %>
-                
+
                 <option value ="<%= equipo.getIdEquipo() %>">
                     <%= equipo.getIdEquipo() %>
                 </option>
@@ -48,7 +47,7 @@
                     List<TipoSolicitud> listTipoSolicitud = tipoSolicitudDAOImpl.obtenerTodosLosTiposSolicitudes();
                     for (TipoSolicitud tipoSolicitud : listTipoSolicitud) {
                 %>
-                
+
                 <option value="<%= tipoSolicitud.getIdTipoSolicitud() %>">
                     <%= tipoSolicitud.getDescripcion() %>
                 </option>
@@ -63,7 +62,7 @@
                     List<Operatividad> listOperatividad = operatividadDAOImpl.obtenerTodasLasOperatividades();
                     for (Operatividad operatividad : listOperatividad) {
                 %>
-                
+
                 <option value="<%= operatividad.getIdOperatividad() %>">
                     <%= operatividad.getDescripcion() %>
                 </option>
