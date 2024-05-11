@@ -24,7 +24,6 @@ public class SolicitudDAOImpl implements SolicitudDAO {
         // Query SQL para insertar una nueva solicitud
         String sql = "INSERT INTO SOLICITUDES (Descripcion, Solicitante, IdEstado, FechaInicioSolicitud, FechaFinSolicitud, IdOperatividad, IdEquipo, IdTipoSolicitud) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-                
 
         try {
             // Preparar la declaración SQL
@@ -44,7 +43,6 @@ public class SolicitudDAOImpl implements SolicitudDAO {
 
             // Cerrar la declaración y la conexión
             statement.close();
-            conexion.close();
 
             System.out.println("Solicitud creada exitosamente.");
         } catch (SQLException e) {
@@ -191,6 +189,7 @@ public class SolicitudDAOImpl implements SolicitudDAO {
             // Cerrar el resultado y la declaración
             resultSet.close();
             statement.close();
+
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Error al obtener todas las solicitudes.");

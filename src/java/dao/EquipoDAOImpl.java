@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.Equipo;
-import model.Solicitud;
 import recursos.DBConnection;
 
 public class EquipoDAOImpl implements EquipoDAO {
@@ -179,6 +178,7 @@ public class EquipoDAOImpl implements EquipoDAO {
             // Cerrar el resultado y la declaración
             resultSet.close();
             statement.close();
+            
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Error al obtener todos los equipos.");

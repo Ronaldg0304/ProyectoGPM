@@ -11,7 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.Operatividad;
-import model.TipoSolicitud;
 import recursos.DBConnection;
 
 public class OperatividadDAOImpl implements OperatividadDAO {
@@ -157,6 +156,7 @@ public class OperatividadDAOImpl implements OperatividadDAO {
             // Cerrar el resultado y la declaración
             resultSet.close();
             statement.close();
+            
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Error al obtener todos los tipo de solicitud.");

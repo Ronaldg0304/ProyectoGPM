@@ -157,6 +157,7 @@ public class TipoSolicitudDAOImpl implements TipoSolicitudDAO {
             // Cerrar el resultado y la declaración
             resultSet.close();
             statement.close();
+            
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Error al obtener todos los tipo de solicitud.");
