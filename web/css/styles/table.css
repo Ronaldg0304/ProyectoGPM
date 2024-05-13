@@ -1,0 +1,21 @@
+.header-text {
+  color: rgb(95, 95, 95) !important;
+}
+
+ td{
+  max-width: 200px;
+  padding: 2px 2px;
+  color: gray !important; 
+  /* BOTH of the following are required for text-overflow */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+th{
+  min-width: 150px;
+  max-width: 200px;
+  padding: 2px 2px;
+  color: rgb(81, 81, 81) !important;
+}
+

@@ -1,0 +1,94 @@
+.animate__animated.animate__zoomIn {
+  --animate-duration: 4s;
+}
+
+/*Animación background burbujas*/
+
+.burbuja {
+  border-radius: 100%;
+  background: linear-gradient(to top, #027184, #ffffff);
+  filter: blur(5px);
+  position: absolute;
+  opacity: 0;
+  animation: burbujas 5s linear infinite;
+  max-height: min-content;
+}
+
+.burbuja:nth-child(1) {
+  width: 20px;
+  height: 20px;
+  left: 2%;
+  animation-duration: 8s;
+}
+.burbuja:nth-child(2) {
+  width: 20px;
+  height: 20px;
+  left: 35%;
+  animation-duration: 5s;
+}
+.burbuja:nth-child(3) {
+  width: 20px;
+  height: 20px;
+  left: 90%;
+  animation-duration: 12s;
+}
+.burbuja:nth-child(4) {
+  width: 20px;
+  height: 20px;
+  left: 65%;
+  animation-duration: 3s;
+}
+
+.burbuja:nth-child(5) {
+  width: 20px;
+  height: 20px;
+  left: 8%;
+  animation-duration: 6s;
+}
+.burbuja:nth-child(6) {
+  width: 20px;
+  height: 20px;
+  left: 70%;
+  animation-duration: 10s;
+}
+.burbuja:nth-child(7) {
+  width: 20px;
+  height: 20px;
+  left: 80%;
+  animation-duration: 14s;
+}
+.burbuja:nth-child(8) {
+  width: 20px;
+  height: 20px;
+  left: 25%;
+  animation-duration: 9s;
+}
+.burbuja:nth-child(9) {
+  width: 20px;
+  height: 20px;
+  left: 29%;
+  animation-duration: 4s;
+}
+.burbuja:nth-child(10) {
+  width: 20px;
+  height: 20px;
+  left: 34%;
+  animation-duration: 2s;
+}
+
+@keyframes burbujas {
+  0% {
+    bottom: 0px;
+    opacity: 0.2;
+  }
+  30% {
+    transform: translateX(30px);
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    bottom: 100vh;
+    opacity: 0;
+  }
+}

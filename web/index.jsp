@@ -4,12 +4,16 @@
     Author     : rolan
 --%>
 <%@ page import="java.util.List" %>
+<%@ page import="dao.SolicitudDAOImpl" %>
 <%@ page import="dao.TipoSolicitudDAOImpl" %>
 <%@ page import="dao.EquipoDAOImpl" %>
+<%@ page import="dao.EstadoDAOImpl" %>
+<%@ page import="model.Solicitud" %>
 <%@ page import="dao.OperatividadDAOImpl" %>
 <%@ page import="model.TipoSolicitud" %>
 <%@ page import="model.Equipo" %>
 <%@ page import="model.Operatividad" %>
+<%@ page import="model.Estado" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -67,9 +71,11 @@
                     </div>
                 </nav>
             </header>
-            <div class="row pb-2 ">
-                <h4>Solicitudes de servicio</h4>
-                <div class="p-2 border b-1">
+            <div class="row pb-2  ms-1 ">
+                <div class=" p-2 border-bottom ">
+                    <h4 class="ms-1 text-secondary">Solicitudes de servicio</h4>
+                </div>
+                <div class="p-2 border-bottom">
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Nueva solicitud</button>
                 </div>
 
@@ -83,7 +89,6 @@
                                         aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-
                                 <form action="ServletSolicitudes" method="GET" class="row g-2 m-0 pt-2 shadow-sm needs-validation" id="formSolictud">
                                     <label class="form-label" >N° Equipo</label><br>
                                     <select class="form-select" type="number" id="txtEquipo" name="txtEquipo" required>
@@ -140,15 +145,60 @@
                                                 data-bs-dismiss="modal">Cancelar</button>
                                         <button type="submit" name="accion" value="add" class="btn btn-primary">Crear solicitud</button>
                                     </div>
-
-
                                 </form>
-
                             </div>
-
-
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="row  pb-2 shadow-sm border b-1 ms-1 ">
+                <div class="table-responsive  ">
+                    <table id="example" class="table table-striped" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Equipo</th>
+                                <th>N° Solicitud</th>
+                                <th>Solicitante</th>
+                                <th>Tipo solicitud</th>
+                                <th>Operatividad</th>
+                                <th>Estado</th>
+                                <th>Fecha de alta</th>
+                                <th>Descripción</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <%
+                                           SolicitudDAOImpl solicitudDAOImpl = new SolicitudDAOImpl();
+                                           List<Solicitud> listSolicitud = solicitudDAOImpl.obtenerTodasLasSolicitudes();
+                                           for (Solicitud solicitud : listSolicitud ) {
+                                           TipoSolicitud tipoSolicitud = tipoSolicitudDAOImpl.obtenerTipoSolicitud(solicitud.getIdTipoSolicitud());
+                                           Operatividad  operatividad = operatividadDAOImpl.obtenerOperatividad(solicitud.getIdOperatividad());
+                                           EstadoDAOImpl estadoDAOImpl = new EstadoDAOImpl();
+                                           Estado estado = estadoDAOImpl.obtenerEstado(solicitud.getIdEstado());
+                                           
+                            %>
+                            <tr>
+                                <td>
+                                    <a href="editarOt.html" class="fluent--edit-16-filled btn btn-success btn-edit"></a>
+                                    <button class="ic--baseline-delete btn btn-danger btn-edit"></button>
+                                </td>
+                                <td value=""> <%= solicitud.getIdEquipo() %> </td>
+                                <td value=""><%= solicitud.getIdSolicitud() %></td>
+                                <td value=""><%= solicitud.getSolicitante()%></td>
+                                <td value=""><%= tipoSolicitud.getDescripcion()%></td>
+                                <td value=""><%= operatividad.getDescripcion() %></td>
+                                <td value=""><%= estado.getDescripcion() %></td>
+                                <td value=""><%= solicitud.getFechaInicioSolicitud() %></td>
+                                <td value=""><%= solicitud.getDescripcion() %></td>
+                            </tr>
+                           
+                            <% } %>
+                        </tbody>
+
+                    </table>
                 </div>
             </div>
 

@@ -1,0 +1,19 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.bg-card {
+  background-color: rgb(232, 232, 232);
+}
+
+.bg-card-item {
+  background-color: rgb(255, 255, 255);
+  text-decoration: none;
+}
+
+.bg-card-item:hover {
+  background-color: rgb(85, 255, 212);
+  color: white;
+}

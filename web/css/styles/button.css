@@ -1,0 +1,14 @@
+.btn-login-index {
+  background: rgb(33, 32, 33);
+  color: white;
+  border-radius: 8px;
+  padding: 8px;
+  border-width: 1px;
+  border-color: white;
+  margin-left: 20px;
+}
+
+.btn-login-index:hover {
+  color: rgb(255, 255, 255);
+  background-color: rgb(102, 102, 102);
+}

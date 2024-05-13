@@ -1,0 +1,10 @@
+.bg-nav {
+  background-color: transparent;
+}
+
+.hover-nav-link {
+  color: white;
+}
+.hover-nav-link:hover {
+  color: rgb(162, 161, 166) !important;
+}
