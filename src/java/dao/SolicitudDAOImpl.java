@@ -160,7 +160,7 @@ public class SolicitudDAOImpl implements SolicitudDAO {
     public List<Solicitud> obtenerTodasLasSolicitudes() {
         List<Solicitud> solicitudes = new ArrayList<>();
         // Query SQL para obtener todas las solicitudes
-        String sql = "SELECT * FROM SOLICITUDES";
+        String sql = "SELECT * FROM SOLICITUDES ORDER BY IdSolicitud DESC";
 
         try {
             // Preparar la declaración SQL
