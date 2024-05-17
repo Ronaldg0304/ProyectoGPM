@@ -13,6 +13,7 @@ import java.util.List;
 import model.Solicitud;
 import recursos.DBConnection;
 
+
 public class SolicitudDAOImpl implements SolicitudDAO {
 
     // Método para obtener una conexión a la base de datos
@@ -113,11 +114,11 @@ public class SolicitudDAOImpl implements SolicitudDAO {
             statement.setString(2, solicitud.getSolicitante());
             statement.setInt(3, solicitud.getIdEstado());
             statement.setDate(4, new java.sql.Date(solicitud.getFechaInicioSolicitud().getTime()));
-            statement.setDate(5, new java.sql.Date(solicitud.getFechaFinSolicitud().getTime()));
+            statement.setDate(5, null);
             statement.setInt(6, solicitud.getIdOperatividad());
             statement.setInt(7, solicitud.getIdEquipo());
             statement.setInt(8, solicitud.getIdTipoSolicitud());
-            statement.setInt(9, solicitud.getIdSolicitud());
+            
 
             // Ejecutar la consulta
             statement.executeUpdate();
@@ -135,7 +136,7 @@ public class SolicitudDAOImpl implements SolicitudDAO {
     @Override
     public void eliminarSolicitud(int idSolicitud) {
         // Query SQL para eliminar una solicitud por su ID
-        String sql = "DELETE FROM SOLICITUDES WHERE IdSolicitud = ? ";
+        String sql = "DELETE FROM SOLICITUDES WHERE IdSolicitud =  ?";
 
         try {
             // Preparar la declaración SQL
@@ -144,8 +145,13 @@ public class SolicitudDAOImpl implements SolicitudDAO {
             statement.setInt(1, idSolicitud);
 
             // Ejecutar la consulta
-            statement.executeUpdate();
+            int filasAfectadas = statement.executeUpdate();
 
+            if (filasAfectadas > 0) {
+                System.out.println("Solicitud eliminada exitosamente.");
+            } else {
+                System.out.println("No se encontró una solicitud con el ID especificado.");
+            }
             // Cerrar la declaración
             statement.close();
 

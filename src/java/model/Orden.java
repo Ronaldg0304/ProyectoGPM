@@ -32,6 +32,10 @@ public class Orden {
         this.idSolicitud = idSolicitud;
         this.idOperatividad = idOperatividad;
     }
+    
+    public Orden(){
+        
+    }
 
     public int getIdOt() {
         return idOt;

@@ -24,11 +24,11 @@ import java.util.Date;
 public class ServletSolicitudes extends HttpServlet {
 
     Solicitud solicitud = new Solicitud();
-    SolicitudDAOImpl solicitudDAO = new SolicitudDAOImpl();
+    SolicitudDAOImpl solicitudDAOImpl = new SolicitudDAOImpl();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
 
     @Override
@@ -36,25 +36,48 @@ public class ServletSolicitudes extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
 
-        String idEquipo = request.getParameter("txtEquipo");
-        String solicitante = request.getParameter("txtSolicitante");
-        String tipoSolicitud = request.getParameter("txtTipoSolicitud");
-        String operatividad = request.getParameter("txtOperatividad");
-        String descripción = request.getParameter("txtDescripcion");
-        Date fechaActual = new Date();
+        String action = request.getParameter("accion");
+        String idSolicitud = request.getParameter("idSolicitud");
 
-        solicitud.setIdEquipo(Integer.parseInt(idEquipo));
-        solicitud.setSolicitante(solicitante);
-        solicitud.setIdTipoSolicitud(Integer.parseInt(tipoSolicitud));
-        solicitud.setIdOperatividad(Integer.parseInt(operatividad));
-        solicitud.setFechaInicioSolicitud(fechaActual);
-        solicitud.setFechaFinSolicitud(null);
-        solicitud.setIdEstado(1);
-        solicitud.setDescripcion(descripción);
+        if (action.equalsIgnoreCase("add")) {
+            String idEquipo = request.getParameter("txtEquipo");
+            String solicitante = request.getParameter("txtSolicitante");
+            String tipoSolicitud = request.getParameter("txtTipoSolicitud");
+            String operatividad = request.getParameter("txtOperatividad");
+            String descripción = request.getParameter("txtDescripcion");
+            Date fechaActual = new Date();
 
-        solicitudDAO.crearSolicitud(solicitud);
+            solicitud.setIdEquipo(Integer.parseInt(idEquipo));
+            solicitud.setSolicitante(solicitante);
+            solicitud.setIdTipoSolicitud(Integer.parseInt(tipoSolicitud));
+            solicitud.setIdOperatividad(Integer.parseInt(operatividad));
+            solicitud.setFechaInicioSolicitud(fechaActual);
+            solicitud.setFechaFinSolicitud(null);
+            solicitud.setIdEstado(1);
+            solicitud.setDescripcion(descripción);
 
-        response.sendRedirect("index.jsp");
+            solicitudDAOImpl.crearSolicitud(solicitud);
+
+            response.sendRedirect("index.jsp");
+
+        }
+        if (action.equalsIgnoreCase("edit")) {
+            request.setAttribute("idSolicitud", idSolicitud);
+            
+            int estado = Integer.parseInt(request.getParameter("txtEstado"));
+            solicitud = solicitudDAOImpl.obtenerSolicitud(Integer.parseInt(idSolicitud));
+            solicitud.setIdEstado(estado);
+            solicitudDAOImpl.actualizarSolicitud(solicitud);
+            request.getRequestDispatcher("ordenes.jsp").forward(request, response);
+        }
+        if (action.equalsIgnoreCase("read")) {
+            request.setAttribute("idSolicitud", idSolicitud);
+            request.getRequestDispatcher("ordenes.jsp").forward(request, response);
+        }
+        if (action.equalsIgnoreCase("delete")) {
+            solicitudDAOImpl.eliminarSolicitud(Integer.parseInt(idSolicitud));
+            response.sendRedirect("index.jsp");
+        }
 
     }
 

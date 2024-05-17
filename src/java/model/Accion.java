@@ -8,7 +8,7 @@ import java.sql.Time;
 
 public class Accion {
     private int idAccion;
-    private Time tiempoAccion;
+    private int tiempoAccion;
     private String comentarioAccion;
     private int idOt;
     private int idAveria;
@@ -17,7 +17,7 @@ public class Accion {
     private int idTipoAccion;
 
     // Constructor
-    public Accion(int idAccion, Time tiempoAccion, String comentarioAccion, int idOt, int idAveria, int idCausaAveria, int idComponente, int idTipoAccion) {
+    public Accion(int idAccion, int tiempoAccion, String comentarioAccion, int idOt, int idAveria, int idCausaAveria, int idComponente, int idTipoAccion) {
         this.idAccion = idAccion;
         this.tiempoAccion = tiempoAccion;
         this.comentarioAccion = comentarioAccion;
@@ -28,6 +28,9 @@ public class Accion {
         this.idTipoAccion = idTipoAccion;
     }
 
+    public Accion() {
+    }
+
     public int getIdAccion() {
         return idAccion;
     }
@@ -36,11 +39,11 @@ public class Accion {
         this.idAccion = idAccion;
     }
 
-    public Time getTiempoAccion() {
+    public int getTiempoAccion() {
         return tiempoAccion;
     }
 
-    public void setTiempoAccion(Time tiempoAccion) {
+    public void setTiempoAccion(int tiempoAccion) {
         this.tiempoAccion = tiempoAccion;
     }
 

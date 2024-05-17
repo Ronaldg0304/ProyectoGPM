@@ -186,5 +186,6 @@ public class EquipoDAOImpl implements EquipoDAO {
 
         return equipos;
     }
+    
 
 }
